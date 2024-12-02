@@ -55,6 +55,7 @@
         android:layout_height="68dp"
         android:text="@string/color_button"
         android:textAlignment="center"
+        android:textSize="20sp"
         app:layout_anchor="@+id/bottomAppBar"
         app:layout_anchorGravity="center" />
 
@@ -75,7 +76,30 @@
             android:text="@string/clear_button"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
+            android:textSize="20sp"
             android:visibility="visible" />
     </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/brushSizeText"
+        android:layout_width="104dp"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="10sp"
+        android:text="@string/width_slider"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_anchor="@+id/bottomAppBar"
+        app:layout_anchorGravity="start|top" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="136dp"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="10sp"
+        android:text="@string/opacity_slider"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_anchor="@+id/bottomAppBar"
+        app:layout_anchorGravity="end|top" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

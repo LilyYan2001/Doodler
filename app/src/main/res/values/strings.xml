@@ -2,5 +2,7 @@
     <string name="app_name">CISCX82Doodler</string>
     <string name="clear_button">Clear</string>
     <string name="color_button">Color</string>
+    <string name="width_slider">\nSize</string>
+    <string name="opacity_slider">\nOpacity</string>
 
 </resources>
