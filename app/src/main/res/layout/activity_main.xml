@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+
+    android:id="@+id/AppLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.ciscx82.ciscx82doodler.DoodleView
+        android:id="@+id/d_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:backgroundTint="#8B9BF8">
+
+        <SeekBar
+            android:id="@+id/brushSize_bar"
+            android:layout_width="110dp"
+            android:layout_height="match_parent"
+            android:max="100"
+            android:progress="10" />
+
+        <View
+            android:layout_width="150dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <SeekBar
+            android:id="@+id/opacity_bar"
+            android:layout_width="110dp"
+            android:layout_height="match_parent"
+            android:gravity="end"
+            android:progressTint="#FFFFFF"
+            android:max="255"
+            android:progress="255"/>
+    </com.google.android.material.bottomappbar.BottomAppBar>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/color_button"
+        android:layout_width="105dp"
+        android:layout_height="68dp"
+        android:text="@string/color_button"
+        android:textAlignment="center"
+        app:layout_anchor="@+id/bottomAppBar"
+        app:layout_anchorGravity="center" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#8595ED"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/clear_button"
+            android:layout_width="106dp"
+            android:layout_height="match_parent"
+            android:background="#800202"
+            android:backgroundTintMode="add"
+            android:text="@string/clear_button"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:visibility="visible" />
+    </androidx.appcompat.widget.Toolbar>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
