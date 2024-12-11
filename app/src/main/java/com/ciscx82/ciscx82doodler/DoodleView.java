@@ -53,6 +53,7 @@ public class DoodleView extends View {
 
     // function for clearing the screen
     public void clearCanvas() {
+        strokes.clear();
         canvas.drawColor(Color.WHITE);
         invalidate();
     }
@@ -62,10 +63,12 @@ public class DoodleView extends View {
         color = newColor;
         paint.setColor(color);
     }
+
     public void setBrushSize(float newSize) {
         brushSize = newSize;
         paint.setStrokeWidth(brushSize);
     }
+
     public void setOpacity(int newOpacity) {
         opacity = newOpacity;
         paint.setAlpha(opacity);
@@ -81,14 +84,21 @@ public class DoodleView extends View {
         canvas.drawColor(Color.WHITE); // background color
     }
 
+    // undo method
+    public void undo() {
+        if (!strokes.isEmpty()) {
+            strokes.remove(strokes.size() - 1);
+            invalidate();
+        }
+    }
+
     // main drawing method
     @Override
     protected void onDraw(@NonNull Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawBitmap(bitmap, 0, 0, bPaint);
 
         // iterate over strokes, draw each onto canvas
-        for (Stroke s: strokes) {
+        for (Stroke s : strokes) {
             paint.setColor(s.color);
             paint.setStrokeWidth(s.strokeWidth);
             paint.setAlpha(s.opacity);
@@ -96,37 +106,28 @@ public class DoodleView extends View {
         }
     }
 
-    private void touchStart(float x, float y) {
-        path = new Path();
-        Stroke newStroke = new Stroke(color, brushSize, opacity, path);
-        strokes.add(newStroke);
-
-        // finally remove any curve
-        // or line from the path
-        path.reset();
-
-        // this methods sets the starting
-        // point of the line being drawn
-        path.moveTo(x, y);
-    }
-
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        float x = event.getX();
-        float y = event.getY();
+        float touchX = event.getX();
+        float touchY = event.getY();
+
+        Stroke newStroke = new Stroke(color, brushSize, opacity, path);
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                touchStart(x, y);
-                invalidate();
+                strokes.add(newStroke);
+                path.moveTo(touchX, touchY);
                 break;
             case MotionEvent.ACTION_MOVE:
-                path.lineTo(x, y);
+                path.lineTo(touchX, touchY);
                 break;
             case MotionEvent.ACTION_UP:
+                path.lineTo(touchX, touchY);
                 canvas.drawPath(path, paint);
-                path.reset();
+                path = new Path();
                 break;
+            default:
+                return false;
         }
         invalidate();
         return true;

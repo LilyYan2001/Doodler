@@ -3,6 +3,7 @@ package com.ciscx82.ciscx82doodler;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.SeekBar;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     // params
     DoodleView view;
     Button clearButton, colorButton;
+    ImageButton undoButton;
     SeekBar selectSize, selectOpacity;
 
 
@@ -25,13 +27,14 @@ public class MainActivity extends AppCompatActivity {
         view = findViewById(R.id.d_view);
         clearButton = findViewById(R.id.clear_button);
         colorButton = findViewById(R.id.color_button);
+        undoButton = findViewById(R.id.undo_button);
         selectSize = findViewById(R.id.brushSize_bar);
         selectOpacity = findViewById(R.id.opacity_bar);
 
         // button onclick listeners
         clearButton.setOnClickListener(v -> view.clearCanvas());
-
         colorButton.setOnClickListener(v -> openColorPicker());
+        undoButton.setOnClickListener(v -> view.undo());
 
         // listener for brush size seekbar
         selectSize.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
