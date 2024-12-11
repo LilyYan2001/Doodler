@@ -24,6 +24,7 @@ public class DoodleView extends View {
     private Bitmap bitmap;
     private Canvas canvas;
     private ArrayList<Stroke> strokes = new ArrayList<>();
+    private ArrayList<Stroke> undoneStrokes = new ArrayList<>();
 
     private int color;
     private float brushSize = 20;
@@ -54,6 +55,7 @@ public class DoodleView extends View {
     // function for clearing the screen
     public void clearCanvas() {
         strokes.clear();
+        undoneStrokes.clear();
         canvas.drawColor(Color.WHITE);
         invalidate();
     }
@@ -87,7 +89,15 @@ public class DoodleView extends View {
     // undo method
     public void undo() {
         if (!strokes.isEmpty()) {
-            strokes.remove(strokes.size() - 1);
+            undoneStrokes.add(strokes.remove(strokes.size() - 1));
+            invalidate();
+        }
+    }
+
+    // redo method
+    public void redo() {
+        if (!undoneStrokes.isEmpty()) {
+            strokes.add(undoneStrokes.remove(undoneStrokes.size() - 1));
             invalidate();
         }
     }

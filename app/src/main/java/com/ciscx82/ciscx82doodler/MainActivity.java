@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     // params
     DoodleView view;
     Button clearButton, colorButton;
-    ImageButton undoButton;
+    ImageButton undoButton, redoButton;
     SeekBar selectSize, selectOpacity;
 
 
@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         clearButton = findViewById(R.id.clear_button);
         colorButton = findViewById(R.id.color_button);
         undoButton = findViewById(R.id.undo_button);
+        redoButton = findViewById(R.id.redo_button);
         selectSize = findViewById(R.id.brushSize_bar);
         selectOpacity = findViewById(R.id.opacity_bar);
 
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         clearButton.setOnClickListener(v -> view.clearCanvas());
         colorButton.setOnClickListener(v -> openColorPicker());
         undoButton.setOnClickListener(v -> view.undo());
+        redoButton.setOnClickListener(v -> view.redo());
 
         // listener for brush size seekbar
         selectSize.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {

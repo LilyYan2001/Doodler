@@ -65,7 +65,9 @@
         android:layout_height="wrap_content"
         android:background="#8595ED"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme">
+        android:theme="?attr/actionBarTheme"
+        app:layout_anchor="@+id/toolbar"
+        app:layout_anchorGravity="center">
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/clear_button"
@@ -78,6 +80,8 @@
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:visibility="visible" />
+
+
     </androidx.appcompat.widget.Toolbar>
 
     <ImageButton
@@ -86,8 +90,19 @@
         android:layout_height="49dp"
         android:background="#5F5A6E"
         android:contentDescription="undoes most recent action"
-        app:layout_anchor="@+id/view"
-        app:layout_anchorGravity="center"
+        app:layout_anchor="@+id/view3"
+        app:layout_anchorGravity="start|center"
+        app:srcCompat="@android:drawable/ic_menu_revert" />
+
+    <ImageButton
+        android:id="@+id/redo_button"
+        android:layout_width="56dp"
+        android:layout_height="49dp"
+        android:background="#5F5A6E"
+        android:contentDescription="redoes most recent undone action"
+        android:rotationY="181"
+        app:layout_anchor="@+id/view3"
+        app:layout_anchorGravity="end|center"
         app:srcCompat="@android:drawable/ic_menu_revert" />
 
     <TextView
@@ -118,5 +133,12 @@
         android:layout_height="60dp"
         app:layout_anchor="@+id/toolbar"
         app:layout_anchorGravity="end|center" />
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="73dp"
+        android:layout_height="60dp"
+        app:layout_anchor="@+id/view"
+        app:layout_anchorGravity="start|center" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
